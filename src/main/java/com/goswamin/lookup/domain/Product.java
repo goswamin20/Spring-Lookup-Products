@@ -13,15 +13,40 @@ public class Product {
     private String productCategory;
     @ManyToOne
     private Inventory inventory;
+    @ManyToOne
+    private Cart cart;
+    @ManyToOne
+    private Order order;
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
     @Lob
+
     private String productDescription;
-    private Integer productRating;
+
+    @Enumerated(value=EnumType.STRING)
+    private Rating productRating;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private List<Review> reviews;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private List<Item> items;
     @Lob
     private Byte[] productImage;
+    @ManyToOne
     private Retailer retailer;
 
     public long getProductId() {
@@ -56,12 +81,8 @@ public class Product {
         this.productDescription = productDescription;
     }
 
-    public Integer getProductRating() {
+    public Rating getProductRating() {
         return productRating;
-    }
-
-    public void setProductRating(Integer productRating) {
-        this.productRating = productRating;
     }
 
     public List<Review> getReviews() {
@@ -94,5 +115,17 @@ public class Product {
 
     public void setRetailer(Retailer retailer) {
         this.retailer = retailer;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+
+    public void setProductRating(Rating productRating) {
+        this.productRating = productRating;
     }
 }

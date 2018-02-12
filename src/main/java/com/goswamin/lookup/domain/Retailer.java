@@ -1,9 +1,24 @@
 package com.goswamin.lookup.domain;
 
-import java.util.List;
+import javax.persistence.*;
+import java.util.Set;
 
-public class Retailer extends User{
+@Entity
+public class Retailer{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long retailerId;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Product> products;
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
 
     public long getRetailerId() {
         return retailerId;

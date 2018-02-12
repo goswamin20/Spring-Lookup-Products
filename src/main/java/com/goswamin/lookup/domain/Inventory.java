@@ -1,6 +1,7 @@
 package com.goswamin.lookup.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Inventory {
@@ -9,14 +10,14 @@ public class Inventory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long inventoryId;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "inventory")
-    private Product products;
+    private Set<Product> products;
     private long numberOfProducts;
 
-    public Product getProducts() {
+    public Set<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Product products) {
+    public void setProducts(Set<Product> products) {
         this.products = products;
     }
 

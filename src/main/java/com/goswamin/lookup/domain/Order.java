@@ -9,7 +9,9 @@ public class Order {
     private long orderID ;
     @ManyToOne
     private Account account;
-    private List<Product> products;
+
+    @OneToMany(cascade=CascadeType.ALL,mappedBy = "order")
+    private Set<Product> products;
     private Date invoiceDate;
     private String orderStatus;
 
@@ -29,11 +31,11 @@ public class Order {
         this.account = account;
     }
 
-    public List<Product> getProducts() {
+    public Set<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(Set<Product> products) {
         this.products = products;
     }
 

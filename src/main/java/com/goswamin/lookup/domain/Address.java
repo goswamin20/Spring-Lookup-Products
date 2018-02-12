@@ -1,6 +1,7 @@
 package com.goswamin.lookup.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Address {
@@ -8,13 +9,14 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long addressId;
-    @ManyToMany
-    private User user;
+    @ManyToMany(mappedBy = "address")
+    private Set<User> users;
     private String address;
     private String city;
     private String state;
     private String country;
     private String zipCode;
+    private boolean isPrimaryAddress;
 
     public long getAddressId() {
         return addressId;
@@ -24,12 +26,12 @@ public class Address {
         this.addressId = addressId;
     }
 
-    public User getUser() {
-        return user;
+    public Set<User> getUser() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Set<User> user) {
+        this.users = user;
     }
 
     public String getAddress() {

@@ -1,14 +1,36 @@
 package com.goswamin.lookup.domain;
 
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
+@Entity
 public class BankDetail {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long bankDetailId;
     private long creditCardNumber;
     private Date expirationDate;
     private int cvv;
-    private Address address;
+
+    public boolean isPrimary() {
+        return isPrimary;
+    }
+
+    public void setPrimary(boolean primary) {
+        isPrimary = primary;
+    }
+
+    private boolean isPrimary;
+    @ManyToMany(mappedBy = "bankDetails")
+    private Set<User> users;
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
 
     public long getBankDetailId() {
         return bankDetailId;
@@ -42,22 +64,7 @@ public class BankDetail {
         this.cvv = cvv;
     }
 
-    public Address getAddress() {
-        return address;
-    }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 
-    public User getUser() {
-        return user;
-    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    @ManyToMany
-    private User user;
 }

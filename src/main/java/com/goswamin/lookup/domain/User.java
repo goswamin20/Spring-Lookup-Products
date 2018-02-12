@@ -2,6 +2,7 @@ package com.goswamin.lookup.domain;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -17,20 +18,27 @@ public class User {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Account account;
-    @OneToMany
-    private Review review;
-    @ManyToMany
-    private List<Address> address;
-    private List<BankDetail> bankDetails;
-    private Address primaryAddress;
-    private BankDetail primaryBankAccount;
 
-    public Review getReview() {
-        return review;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private Set<Review> reviews;
+    @ManyToMany
+    @JoinTable(name="User_Address",joinColumns = @JoinColumn(name="userId"),
+            inverseJoinColumns = @JoinColumn(name="addressId"))
+    private Set<Address> address;
+
+    @ManyToMany
+    @JoinTable(name="User_BankDetail",joinColumns = @JoinColumn(name="userId"),
+            inverseJoinColumns = @JoinColumn(name="bankDetailId"))
+    private Set<BankDetail> bankDetails;
+
+
+
+    public Set<Review> getReview() {
+        return reviews;
     }
 
-    public void setReview(Review review) {
-        this.review = review;
+    public void setReview(Set<Review> review) {
+        this.reviews = review;
     }
 
     public String getFirstName() {
@@ -97,35 +105,23 @@ public class User {
         this.account = account;
     }
 
-    public List<Address> getAddress() {
+    public Set<Address> getAddress() {
         return address;
     }
 
-    public void setAddress(List<Address> address) {
+    public void setAddress(Set<Address> address) {
         this.address = address;
     }
 
-    public List<BankDetail> getBankDetails() {
+    public Set<BankDetail> getBankDetails() {
         return bankDetails;
     }
 
-    public void setBankDetails(List<BankDetail> bankDetails) {
+    public void setBankDetails(Set<BankDetail> bankDetails) {
         this.bankDetails = bankDetails;
     }
 
-    public Address getPrimaryAddress() {
-        return primaryAddress;
-    }
 
-    public void setPrimaryAddress(Address primaryAddress) {
-        this.primaryAddress = primaryAddress;
-    }
 
-    public BankDetail getPrimaryBankAccount() {
-        return primaryBankAccount;
-    }
 
-    public void setPrimaryBankAccount(BankDetail primaryBankAccount) {
-        this.primaryBankAccount = primaryBankAccount;
-    }
 }

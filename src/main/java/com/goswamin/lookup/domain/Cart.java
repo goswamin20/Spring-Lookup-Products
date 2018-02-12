@@ -2,6 +2,7 @@ package com.goswamin.lookup.domain;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Cart {
@@ -12,7 +13,9 @@ public class Cart {
 
     @OneToOne
     private Account account;
-    private List<Product> products;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Product> products;
 
     public long getCartId() {
         return cartId;
@@ -30,11 +33,11 @@ public class Cart {
         this.account = account;
     }
 
-    public List<Product> getProducts() {
+    public Set<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(Set<Product> products) {
         this.products = products;
     }
 }

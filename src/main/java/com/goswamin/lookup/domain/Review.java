@@ -13,6 +13,7 @@ public class Review {
     private Product product;
     @Lob
     private String comment;
+
     @ManyToOne
     private User user;
 
