@@ -7,11 +7,11 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long orderID ;
-    @ManyToOne
-    private Account account;
+    /*@ManyToOne
+    private Account account;*/
 
-    @OneToMany(cascade=CascadeType.ALL,mappedBy = "order")
-    private Set<Product> products;
+    /*@OneToMany(cascade=CascadeType.ALL,mappedBy = "order")
+    private Set<Product> products;*/
     private Date invoiceDate;
     private String orderStatus;
 
@@ -23,21 +23,21 @@ public class Order {
         this.orderID = orderID;
     }
 
-    public Account getAccount() {
+    /*public Account getAccount() {
         return account;
     }
 
     public void setAccount(Account account) {
         this.account = account;
-    }
+    }*/
 
-    public Set<Product> getProducts() {
+    /*public Set<Product> getProducts() {
         return products;
     }
 
     public void setProducts(Set<Product> products) {
         this.products = products;
-    }
+    }*/
 
     public Date getInvoiceDate() {
         return invoiceDate;

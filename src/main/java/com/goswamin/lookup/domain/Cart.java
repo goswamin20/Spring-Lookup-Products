@@ -14,8 +14,8 @@ public class Cart {
     @OneToOne
     private Account account;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Product> products;
+    /*@OneToMany(cascade = CascadeType.ALL)
+    private Set<Product> products;*/
 
     public long getCartId() {
         return cartId;
@@ -33,11 +33,11 @@ public class Cart {
         this.account = account;
     }
 
-    public Set<Product> getProducts() {
+    /*public Set<Product> getProducts() {
         return products;
     }
 
     public void setProducts(Set<Product> products) {
         this.products = products;
-    }
+    }*/
 }

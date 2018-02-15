@@ -16,8 +16,8 @@ public class Account {
     @OneToOne(cascade = CascadeType.ALL)
     private Cart cart;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
-    private List<Order> orders;
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
+    private List<Order> orders;*/
 
 
     public User getUser() {
@@ -44,11 +44,11 @@ public class Account {
         this.cart = cart;
     }
 
-    public List<Order> getOrders() {
+    /*public List<Order> getOrders() {
         return orders;
     }
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
-    }
+    }*/
 }

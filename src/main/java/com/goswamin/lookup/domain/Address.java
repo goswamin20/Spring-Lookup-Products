@@ -11,6 +11,8 @@ public class Address {
     private long addressId;
     @ManyToMany(mappedBy = "address")
     private Set<User> users;
+    @ManyToMany(mappedBy = "address")
+    private Set<Retailer> retailers;
     private String address;
     private String city;
     private String state;

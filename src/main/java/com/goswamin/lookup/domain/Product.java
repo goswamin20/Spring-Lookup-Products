@@ -13,12 +13,24 @@ public class Product {
     private String productCategory;
     @ManyToOne
     private Inventory inventory;
-    @ManyToOne
+    /*@ManyToOne
     private Cart cart;
     @ManyToOne
-    private Order order;
+    private Order order;*/
+    @Lob
+    private String productDescription;
+    @Enumerated(value=EnumType.STRING)
+    private Rating productRating;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+    private List<Review> reviews;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+    private List<Item> items;
+    @Lob
+    private Byte[] productImage;
+    @ManyToOne
+    private Retailer retailer;
 
-    public Cart getCart() {
+    /*public Cart getCart() {
         return cart;
     }
 
@@ -32,22 +44,7 @@ public class Product {
 
     public void setOrder(Order order) {
         this.order = order;
-    }
-
-    @Lob
-
-    private String productDescription;
-
-    @Enumerated(value=EnumType.STRING)
-    private Rating productRating;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    private List<Review> reviews;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    private List<Item> items;
-    @Lob
-    private Byte[] productImage;
-    @ManyToOne
-    private Retailer retailer;
+    }*/
 
     public long getProductId() {
         return productId;
