@@ -5,7 +5,18 @@
     <title>Lookup Home</title>
 </head>
 <body>
-<h1>Products</h1>
-<p>welcome</p>
+    <h1>Products</h1>
+    <p>welcome</p>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Description</th>
+        </tr>
+        <tr th:each="product:${products}">
+            <td th:text="${product.productId}"></td>
+            <td th:text="${product.productDescription}"></td>
+            <td></td>
+        </tr>
+    </table>
 </body>
 </html>
